@@ -59,15 +59,44 @@ class Stack:
         return self.__stack[-1]
 
 
-stack = Stack()
-stack.push(1)
-stack.push(2)
-stack.push(3)
-stack.push(4)
-print(stack)
-print(stack.pop())
-print(stack.pop())
-print(stack)
-print(stack.first_item())
-stack.push(999)
-print(stack.first_item())
+class Fraction:
+    def __init__(self, x: int, y: int):
+        self.__x = x
+        self.__y = y
+
+    def __str__(self):
+        return f"{self.__x}/{self.__y}"
+
+    def get_x(self):
+        return self.__x
+
+    def set_x(self, x: int):
+        if not isinstance(x, int):
+            raise Exception("Только цифры")
+        self.__x = x
+
+    def get_y(self):
+        return self.__y
+
+    def set_y(self, y):
+        if not isinstance(y, int):
+            raise Exception("Только цифры")
+        self.__y = y
+
+    def __add__(self, item: "Fraction"):
+        new_f = Fraction(x=self.__x + item.get_x(),
+                         y=self.__y + item.get_y())
+        return new_f
+
+    def plus(self, item: "Fraction"):
+        new_f = Fraction(x=self.__x + item.get_x(),
+                         y=self.__y + item.get_y())
+        return new_f
+
+f1 = Fraction(x=1,
+              y=2)
+f2 = Fraction(x=3,
+              y=4)
+f3 = Fraction(5, 10)
+
+print(f1 + f2 + f3)
